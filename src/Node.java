@@ -3,12 +3,16 @@ public class Node {
     private Node previous;
     private Node bigger;
     private Node smaller;
+    private int key;
+    static int keyCounter=0;
 
     public Node(int number, Node previous, Node bigger, Node smaller) {
         this.number = number;
         this.previous = previous;
         this.bigger = bigger;
         this.smaller = smaller;
+        this.key=keyCounter;
+        keyCounter++;
     }
 
     public int getNumber() {
