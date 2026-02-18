@@ -43,15 +43,6 @@ public class Tree {
         return true;
     }
 
-    private void addNode (Node nodeToAddTo, int numberToBeAdded){
-        if (nodeToAddTo.getNumber()>numberToBeAdded){
-            nodeToAddTo.setBigger(new Node(numberToBeAdded,nodeToAddTo,null,null));
-        }else {
-            nodeToAddTo.setSmaller(new Node(numberToBeAdded,nodeToAddTo,null,null));
-        }
-
-    }
-
     public Node findNode(int number){
         Node tempNode=root;
         while (tempNode!=null){

@@ -3,15 +3,16 @@
 public class Main {
     public static void main(String[] args) {
         int number;
-        Node node= new Node((int)(Math.random()*10),null,null,null);
+        Node node= new Node((int)(Math.random()*100),null,null,null);
         Tree tree = new Tree(node);
         for (int i = 0; i < 100; i++) {
-            tree.addNode((int)(Math.random()*10));
+            tree.addNode((int)(Math.random()*100));
 
 
         }
         tree.printTreeMatrix();
         tree.printTree();
+        System.out.println("Numero di nodi: "+tree.getNumberOfNodes());;
 
 
     }
