@@ -62,9 +62,6 @@ public class Tree {
         return null;
     }
 
-
-    ///
-
     public void printTree() {
         printTree(root, "", true);
     }
@@ -96,44 +93,11 @@ public class Tree {
         }
     }
 
-    public void printTreeUntil(int numberToBeFound) {
-        printTreeUntil(root, "", true,numberToBeFound);
-    }
-
-    private void printTreeUntil(Node node, String prefix, boolean isLast,int numberToBeFound) {
-        if (node == null) {
-            return;
-        }
-
-
-        // Stampa il prefisso + ramo
-        System.out.println(prefix + (isLast ? "└── " : "├── ") + node.getNumber());
-
-        // Calcola il nuovo prefisso per i figli
-        String newPrefix = prefix + (isLast ? "    " : "│   ");
-
-        // Se ha entrambi i figli
-        if (node.getSmaller() != null && node.getBigger() != null) {
-            printTreeUntil(node.getSmaller(), newPrefix, false,numberToBeFound);
-            printTreeUntil(node.getBigger(), newPrefix, true,numberToBeFound);
-        }
-        // Solo sinistro
-        else if (node.getSmaller() != null) {
-            printTreeUntil(node.getSmaller(), newPrefix, true,numberToBeFound);
-        }
-        // Solo destro
-        else if (node.getBigger() != null) {
-            printTreeUntil(node.getBigger(), newPrefix, true,numberToBeFound);
-        }
-    }
 
     public void printTreeMatrix() {
 
         if (root == null) return;
 
-        // =========================
-        // 1️⃣ Calcolo altezza (iterativo)
-        // =========================
         LinkedList<Node> queue = new LinkedList<>();
         queue.add(root);
         int height = 0;
@@ -149,9 +113,6 @@ public class Tree {
             }
         }
 
-        // =========================
-        // 2️⃣ Creazione matrice
-        // =========================
         int rows = height * 2;
         int cols = (int) Math.pow(2, height) * 2;
 
@@ -163,9 +124,6 @@ public class Tree {
             }
         }
 
-        // =========================
-        // 3️⃣ Riempimento iterativo
-        // =========================
         class Frame {
             Node node;
             int row, col, offset;
@@ -183,13 +141,11 @@ public class Tree {
 
             if (node == null) continue;
 
-            // Scrive numero
             String value = String.valueOf(node.getNumber());
             for (int i = 0; i < value.length(); i++) {
                 matrix[f.row][f.col + i] = value.charAt(i);
             }
 
-            // Figlio destro
             if (node.getBigger() != null) {
                 matrix[f.row + 1][f.col + f.offset / 2] = '\\';
                 stack.push(new Frame(
@@ -200,7 +156,6 @@ public class Tree {
                 ));
             }
 
-            // Figlio sinistro
             if (node.getSmaller() != null) {
                 matrix[f.row + 1][f.col - f.offset / 2] = '/';
                 stack.push(new Frame(
@@ -212,9 +167,6 @@ public class Tree {
             }
         }
 
-        // =========================
-        // 4️⃣ Stampa
-        // =========================
         for (int i = 0; i < rows; i++) {
             System.out.println(new String(matrix[i]));
         }
